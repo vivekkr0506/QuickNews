@@ -1,4 +1,5 @@
 package com.vivek.quicknews
+
 import androidx.multidex.MultiDexApplication
 import dagger.hilt.android.HiltAndroidApp
 

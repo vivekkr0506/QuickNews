@@ -24,6 +24,7 @@ object NetworkModule {
     fun provideBaseURL(): String {
         return "https://newsapi.org/v2/"
     }
+
     /**
      * Provides LoggingInterceptor for api information
      */
@@ -32,6 +33,7 @@ object NetworkModule {
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
+
     /**
      * Provides custom OkkHttp
      */
@@ -48,6 +50,7 @@ object NetworkModule {
         okHttpClient.build()
         return okHttpClient.build()
     }
+
     /**
      * Provides converter factory for retrofit
      */
@@ -56,22 +59,19 @@ object NetworkModule {
     fun provideConverterFactory(): Converter.Factory {
         return GsonConverterFactory.create()
     }
+
     /**
      * Provides ApiServices client for Retrofit
      */
     @Singleton
     @Provides
     fun provideRetrofitClient(
-        baseUrl: String,
-        okHttpClient: OkHttpClient,
-        converterFactory: Converter.Factory
+        baseUrl: String, okHttpClient: OkHttpClient, converterFactory: Converter.Factory
     ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(okHttpClient)
-            .addConverterFactory(converterFactory)
-            .build()
+        return Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient)
+            .addConverterFactory(converterFactory).build()
     }
+
     /**
      * Provides Api Service using retrofit
      */

@@ -10,7 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.vivek.quicknews.ui.navgraph.BottomNavigationBar
 import com.vivek.quicknews.ui.screens.MainScreen
 import com.vivek.quicknews.ui.theme.QuickNewsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             QuickNewsTheme {
-                MainScreen()
+                BottomNavigationBar()
             }
         }
     }

@@ -28,10 +28,9 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
-            buildConfigField("String","API_KEY","\"33523e1cf179484089bfa8d6df00988f\"")
+            buildConfigField("String", "API_KEY", "\"33523e1cf179484089bfa8d6df00988f\"")
         }
     }
     compileOptions {
@@ -90,4 +89,6 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
+
+    implementation("io.coil-kt:coil-compose:2.7.0")
 }

@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.vivek.quicknews.data.model.NewsResponse
 import com.vivek.quicknews.data.repository.NewsRepository
 import com.vivek.quicknews.network.ApiResult
+import com.vivek.quicknews.ui.screens.Category
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -23,25 +24,21 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(private val repo: NewsRepository) : ViewModel() {
     val searchData: MutableState<ApiResult<NewsResponse>?> = mutableStateOf(null)
 
-
     @ExperimentalCoroutinesApi
     @FlowPreview
     fun searchApi(searchKey: String) {
         viewModelScope.launch {
-            flowOf(searchKey).debounce(300)
-                .filter {
-                    it.trim().isEmpty().not()
+            flowOf(searchKey).debounce(300).filter {
+                it.trim().isEmpty().not()
+            }.distinctUntilChanged().flatMapLatest {
+                repo.searchNews(it)
+            }.collect {
+                if (it is ApiResult.Success) {
+                    it.data
                 }
-                .distinctUntilChanged()
-                .flatMapLatest {
-                    repo.searchNews(it)
-                }.collect {
-                    if (it is ApiResult.Success){
-                        it.data
-                    }
-                    Log.e("Vivek",it.toString())
-                    searchData.value = it
-                }
+                Log.e("Vivek", it.toString())
+                searchData.value = it
+            }
         }
     }
 }
