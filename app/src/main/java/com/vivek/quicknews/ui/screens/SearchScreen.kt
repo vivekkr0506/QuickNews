@@ -31,11 +31,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.multidex.BuildConfig
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -62,14 +60,16 @@ fun SearchScreen(navController: NavController) {
                 verticalArrangement = Arrangement.Top
             ) {
                 NewsSearchBar(newsViewModel)
-                PagingListScreen()
-//                if(newsViewModel.searchData.value != null){
-//                    newsViewModel.searchData.value?.let {
-//                        if (it is ApiResult.Success<NewsResponse>) {
-//                            ArticleCard(it.data)
-//                        }
-//                    }
-//                }
+
+                if(newsViewModel.searchData.value != null){
+                    newsViewModel.searchData.value?.let {
+                        if (it is ApiResult.Success<NewsResponse>) {
+                            ArticleCard(it.data, navController)
+                        }
+                    }
+                }else{
+                    PagingListScreen()
+                }
 
             }
         }

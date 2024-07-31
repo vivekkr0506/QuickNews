@@ -10,7 +10,7 @@ interface NewsApiService {
     @GET("everything/")
     suspend fun search(
         @Query("q") searchKey: String,
-        @Query("apiKey") api_key: String = "33523e1cf179484089bfa8d6df00988f"
+        @Query("apiKey") api_key: String = "d78c8edc8b4c4f26a1c2ea75e253d3b3"
     ): NewsResponse
 
 
@@ -19,15 +19,7 @@ interface NewsApiService {
         @Query("page") page: Int,
         @Query("country") country: String = "us",
         @Query("category") category: String = "business",
-        @Query("apiKey") api_key: String = "33523e1cf179484089bfa8d6df00988f"
+        @Query("apiKey") api_key: String = "d78c8edc8b4c4f26a1c2ea75e253d3b3"
 
     ) : NewsResponse
-   // https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=33523e1cf179484089bfa8d6df00988f
-    @GET("movie/upcoming")
-    suspend fun paginatedArticles(
-        @Query("page") page: Int,
-        @Query("query") searchKey: String?,
-        @Query("apiKey") api_key: String = "33523e1cf179484089bfa8d6df00988f"
-    ): BaseModel
-
 }

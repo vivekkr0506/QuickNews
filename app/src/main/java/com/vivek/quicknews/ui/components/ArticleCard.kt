@@ -2,6 +2,7 @@ package com.vivek.quicknews.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,11 +28,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.vivek.quicknews.data.model.NewsResponse
 
 @Composable
-fun ArticleCard(data: NewsResponse) {
+fun ArticleCard(data: NewsResponse, navController: NavController) {
     data.let {
         LazyColumn() {
             items(it.articles) { article ->
@@ -93,8 +95,9 @@ fun ArticleCard(data: NewsResponse) {
                         Row(
                             modifier = Modifier
                                 .align(Alignment.BottomEnd)
-                                .padding(12.dp),
+                                .padding(12.dp).clickable { navController.navigate(route = "news_details") },
                             verticalAlignment = Alignment.CenterVertically
+
                         ) {
                             Text(
                                 style = TextStyle(

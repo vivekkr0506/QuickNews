@@ -32,7 +32,6 @@ android {
             buildConfigField("String", "API_KEY", "\"33523e1cf179484089bfa8d6df00988f\"")
         }
         release {
-
             isMinifyEnabled = true
             isShrinkResources = true
             isDebuggable = false

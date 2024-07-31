@@ -27,6 +27,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.vivek.quicknews.ui.screens.BookmarksScreen
 import com.vivek.quicknews.ui.screens.HomeScreen
+import com.vivek.quicknews.ui.screens.NewsDetails
 import com.vivek.quicknews.ui.screens.SearchScreen
 
 @Composable
@@ -75,6 +76,9 @@ fun BottomNavigationBar() {
                 BookmarksScreen(
                     navController
                 )
+            }
+            composable(Screens.NewsDetails.route){
+                NewsDetails()
             }
         }
     }

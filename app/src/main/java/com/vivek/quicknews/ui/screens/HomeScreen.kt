@@ -36,6 +36,7 @@ fun HomeScreen(navController: NavController) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
             ) {
+                Spacer(modifier = Modifier.height(16.dp))
                 NewsSearchBar(newsViewModel)
                 Spacer(modifier = Modifier.height(16.dp))
                 LazyRow(
@@ -51,7 +52,8 @@ fun HomeScreen(navController: NavController) {
                         }
                     }
                 }
-               MainScreen(searchKey = "")
+                Spacer(modifier = Modifier.height(16.dp))
+               MainScreen(searchKey = "",navController)
             }
 
         }
