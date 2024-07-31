@@ -25,8 +25,17 @@ android {
     }
 
     buildTypes {
-        release {
+        debug{
             isMinifyEnabled = false
+            isShrinkResources = false
+            isDebuggable = true
+            buildConfigField("String", "API_KEY", "\"33523e1cf179484089bfa8d6df00988f\"")
+        }
+        release {
+
+            isMinifyEnabled = true
+            isShrinkResources = true
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
@@ -90,5 +99,7 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
 
-    implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation(libs.coil.compose)
+    implementation ("androidx.paging:paging-runtime:3.3.1")
+    implementation (libs.androidx.paging.compose.v100alpha15)
 }

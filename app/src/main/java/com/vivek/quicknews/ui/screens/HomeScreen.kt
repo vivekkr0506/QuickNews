@@ -6,10 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -26,21 +23,16 @@ import com.vivek.quicknews.ui.theme.QuickNewsTheme
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 
-
 @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 @Composable
 fun HomeScreen(navController: NavController) {
     val newsViewModel = hiltViewModel<NewsViewModel>()
-    QuickNewsTheme()
-    {
+    QuickNewsTheme() {
         Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.primary
+            modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.primary
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(top = 15.dp),
+                modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
             ) {
@@ -52,16 +44,22 @@ fun HomeScreen(navController: NavController) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     items(categories.size) { index ->
-                        TrendingItem(category = categories[index]){newsViewModel.searchApi(
-                            categories[index].name)}
+                        TrendingItem(category = categories[index]) {
+                            newsViewModel.searchApi(
+                                categories[index].name
+                            )
+                        }
                     }
                 }
-
-                MainScreen("")
+               MainScreen(searchKey = "")
             }
 
         }
     }
 }
+
+
+
+
 
 

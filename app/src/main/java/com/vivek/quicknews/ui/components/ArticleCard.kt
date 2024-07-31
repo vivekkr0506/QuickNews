@@ -33,7 +33,7 @@ import com.vivek.quicknews.data.model.NewsResponse
 @Composable
 fun ArticleCard(data: NewsResponse) {
     data.let {
-        LazyColumn {
+        LazyColumn() {
             items(it.articles) { article ->
                 if (article.urlToImage.isNullOrEmpty().not()) {
                     Box(
