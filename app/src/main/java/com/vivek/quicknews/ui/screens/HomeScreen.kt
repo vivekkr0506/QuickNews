@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -16,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.vivek.quicknews.R
+import com.vivek.quicknews.data.model.categories
 import com.vivek.quicknews.ui.components.NewsSearchBar
 import com.vivek.quicknews.ui.components.TrendingItem
 import com.vivek.quicknews.ui.screens.viewModel.NewsViewModel
@@ -25,14 +27,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 
 
-data class Category(val name: String, val imageRes: Int)
-val categories = listOf(
-    Category("Trending", R.drawable.ic_launcher_background),
-    Category("Sports", R.drawable.ic_launcher_foreground),
-    Category("Business", R.drawable.ic_launcher_background),
-    Category("Fashion", R.drawable.ic_launcher_background),
-    Category("Local", R.drawable.ic_launcher_background)
-)
 @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -62,6 +56,7 @@ fun HomeScreen(navController: NavController) {
                             categories[index].name)}
                     }
                 }
+
                 MainScreen("")
             }
 

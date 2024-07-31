@@ -22,4 +22,15 @@ class NewsRepository @Inject constructor(
                 emit(ApiResult.Error(e))
             }
     }
+
+    override suspend fun topHeadline(): Flow<ApiResult<NewsResponse>> = flow {
+        emit(ApiResult.Loading)
+        try {
+            val topHeadline = newsApiService.getTopHeadline()
+            emit(ApiResult.Success(topHeadline))
+
+        } catch (e: Exception) {
+            emit(ApiResult.Error(e))
+        }
+    }
 }

@@ -13,6 +13,15 @@ interface NewsApiService {
         @Query("apiKey") api_key: String = "33523e1cf179484089bfa8d6df00988f"
     ): NewsResponse
 
+
+    @GET("top-headlines")
+    suspend fun getTopHeadline(
+        @Query("country") country: String = "us",
+        @Query("category") category: String = "business",
+        @Query("apiKey") api_key: String = "33523e1cf179484089bfa8d6df00988f"
+
+    ) : NewsResponse
+   // https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=33523e1cf179484089bfa8d6df00988f
     @GET("movie/upcoming")
     suspend fun paginatedArticles(
         @Query("page") page: Int,

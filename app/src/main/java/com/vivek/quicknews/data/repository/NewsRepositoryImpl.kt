@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface NewsRepositoryImpl {
     suspend fun searchNews(searchKey: String): Flow<ApiResult<NewsResponse>>
+    suspend fun topHeadline(): Flow<ApiResult<NewsResponse>>
 }
